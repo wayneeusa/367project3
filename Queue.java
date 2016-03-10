@@ -104,7 +104,10 @@ public class Queue<E> implements QueueADT<E>
 	 */
 	public void clear()
 		{
-		array = (E[]) new Object [100];
+
+				for (int i = 0; i < numitems; i++) {
+					dequeue();
+				}
 		}
 
 	/**
