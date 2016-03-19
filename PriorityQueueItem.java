@@ -1,3 +1,23 @@
+///////////////////////////////////////////////////////////////////////////////
+//                   ALL STUDENTS COMPLETE THESE SECTIONS
+// Main Class File:  StudentCenter.java
+// File:             PriorityQueueItem.java
+// Semester:         CS 367 Spring 2016
+//
+// Author:           Jonathan Santoso, jsantoso2@wisc.edu
+// CS Login:         santoso
+// Lecturer's Name:  Jim Skrentny
+// Lab Section:      (your lab section number)
+//
+//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
+//
+// Pair Partner:     Wayne Eternicka
+// Email:            wayne@badgers.me
+// CS Login:         eternicka
+// Lecturer's Name:  Deb Deppeler
+// Lab Section:      (your partner's lab section number)
+//
+//////////////////// STUDENTS WHO GET HELP FROM OTHER THAN THEIR PARTNER ///////
 /**
  * 
  * Class to represent object stored at every entry in the PriorityQueue. ie, The

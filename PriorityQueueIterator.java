@@ -1,10 +1,33 @@
+///////////////////////////////////////////////////////////////////////////////
+//                   ALL STUDENTS COMPLETE THESE SECTIONS
+// Main Class File:  StudentCenter.java
+// File:             PriorityQueueIterator.java
+// Semester:         CS 367 Spring 2016
+//
+// Author:           Jonathan Santoso, jsantoso2@wisc.edu
+// CS Login:         santoso
+// Lecturer's Name:  Jim Skrentny
+// Lab Section:      (your lab section number)
+//
+//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
+//
+// Pair Partner:     Wayne Eternicka
+// Email:            wayne@badgers.me
+// CS Login:         eternicka
+// Lecturer's Name:  Deb Deppeler
+// Lab Section:      (your partner's lab section number)
+//
+//////////////////// STUDENTS WHO GET HELP FROM OTHER THAN THEIR PARTNER ///////
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class PriorityQueueIterator<T> implements Iterator<PriorityQueueItem<T>>
 	{
-
+	
+	// priorityQueue is a local variable of priorityQueue
+	// currentSize is the currentSize of the priorityQueue
+	// currPos is the position of the iterator
 	private PriorityQueue<T> priorityQueue;
 	private int currentSize;
 	private int currPos;
@@ -21,8 +44,9 @@ public class PriorityQueueIterator<T> implements Iterator<PriorityQueueItem<T>>
 		// TODO
 		// This copies the contents of the passed parameter to the local object.
 		// Hint : see copy constructor in PriorityQueue
+		// Initializes all variables
 		this.currentSize = pq.size();
-		this.priorityQueue = new PriorityQueue(pq);
+		this.priorityQueue = new PriorityQueue <T> (pq);
 		currPos = 1;
 		}
 
@@ -35,6 +59,8 @@ public class PriorityQueueIterator<T> implements Iterator<PriorityQueueItem<T>>
 	public boolean hasNext()
 		{
 		// TODO
+		// if there is a current element, return true
+		// else return false
 		if (currPos <= currentSize){
 			return true;
 		} else {
@@ -54,10 +80,14 @@ public class PriorityQueueIterator<T> implements Iterator<PriorityQueueItem<T>>
 	public PriorityQueueItem<T> next()
 		{
 		// TODO
+		// return the item the iterator is pointing at now
+		// and moves the iterator to next position
 		if (currPos > currentSize){
 			throw new NoSuchElementException();
 		}
-		return priorityQueue.dequeue();
+		PriorityQueueItem <T> temp = priorityQueue.dequeue();
+		currPos++;
+		return temp;
 		}
 
 	/**

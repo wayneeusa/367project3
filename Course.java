@@ -1,4 +1,25 @@
+///////////////////////////////////////////////////////////////////////////////
+//                   ALL STUDENTS COMPLETE THESE SECTIONS
+// Main Class File:  StudentCenter.java
+// File:             Course.java
+// Semester:         CS 367 Spring 2016
+//
+// Author:           Jonathan Santoso, jsantoso2@wisc.edu
+// CS Login:         santoso
+// Lecturer's Name:  Jim Skrentny
+// Lab Section:      (your lab section number)
+//
+//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
+//
+// Pair Partner:     Wayne Eternicka
+// Email:            wayne@badgers.me
+// CS Login:         eternicka
+// Lecturer's Name:  Deb Deppeler
+// Lab Section:      (your partner's lab section number)
+//
+//////////////////// STUDENTS WHO GET HELP FROM OTHER THAN THEIR PARTNER ///////
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -31,6 +52,8 @@ public class Course
 		this.courseCode = classCode;
 		this.name = name;
 		this.maxCapacity = maxCapacity;
+		registrationQueue = new PriorityQueue <Student> ();
+		courseRoster = new ArrayList <Student> ();
 		}
 
 	/**
@@ -45,18 +68,16 @@ public class Course
 	public void addStudent(Student student, int coins)
 		{
 		// This method is called from Studentcenter.java
-
+		// TODO : see function header
 		// Enqueue a newly created PQItem.
 		// Checking if a PriorityQueueItem with the same priority already exists
 		// is done in the enqueue method.
-
-		// TODO : see function header
-		System.out.println("54");
 		PriorityQueueItem <Student> newItem = new PriorityQueueItem <Student> (coins);
-		System.out.println("56");
-		// THIS IS WRONG????
-		registrationQueue.enqueue(newItem);
-		student.deductCoins(coins);
+		newItem.add(student);
+		// if student has enough coins, add it to registrationQueue
+		if (student.deductCoins(coins) == true){
+			registrationQueue.enqueue(newItem);
+		}
 		}
 
 	/**
@@ -67,19 +88,22 @@ public class Course
 		{
 		// TODO : populate courseRoster from registrationQueue
 		// Use the PriorityQueueIterator for this task.
-		/*PriorityQueueIterator <Student> itr = registrationQueue.iterator();
+		// Initializes iterator
+		Iterator <PriorityQueueItem<Student>> itr = registrationQueue.iterator();
 		while (itr.hasNext()){
-			courseRoster.add(itr.next());
-		}*/
-		
-		// DON"T KNOW
-		Student enrollstud = null;
-		if (classCount < maxCapacity){
-			for (int i = 0; i < registrationQueue.size(); i++){
-				enrollstud = registrationQueue.peek().getList().dequeue();
-				courseRoster.add(enrollstud);
-				enrollstud.deductCoins(registrationQueue.dequeue().getPriority());
-			}
+			// gets a PriorityQueueItem
+			PriorityQueueItem <Student> temp = itr.next();
+			// if class is not full
+			if (classCount < maxCapacity){
+				// dequeue the queue in the PriorityQueue Item
+				// add the student to courseRoster and increment classCount
+				while (temp.getList().isEmpty() == false){
+					if (classCount < maxCapacity){
+						courseRoster.add(temp.getList().dequeue());
+						this.classCount++;
+					}
+				}	
+			} 
 		}
 		}
 
